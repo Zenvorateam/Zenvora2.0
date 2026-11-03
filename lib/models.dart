@@ -7,19 +7,19 @@ import 'config.dart';
 // Baad mein Admin > Staff se isko badal sakte ho.
 
 // ---------------------------------------------------------------- COLORS
-const Color ink = Color(0xFF0B0B0F);
-const Color muted = Color(0xFF6B7280);
-const Color line = Color(0xFFE4E4E7);
-const Color pageBg = Color(0xFFFAFAFA);
+const Color ink = Color(0xFFF4F3EF);
+const Color muted = Color(0xFFA5A69B);
+const Color line = Color(0xFF30322D);
+const Color pageBg = Color(0xFF080908);
 const Color danger = Color(0xFFDC2626);
 const Color success = Color(0xFF059669);
 
 /// Light gray, light green, light pink, light blue
 const List<List<Color>> softGradients = [
-  [Color(0xFFF7F7F8), Color(0xFFEDEDEF)],
-  [Color(0xFFF4F4F5), Color(0xFFE8E8EA)],
-  [Color(0xFFF9F9FA), Color(0xFFEFEFF1)],
-  [Color(0xFFF5F5F6), Color(0xFFEAEAEC)],
+  [Color(0xFF171A16), Color(0xFF22261F)],
+  [Color(0xFF1B1D19), Color(0xFF292C25)],
+  [Color(0xFF151714), Color(0xFF20231D)],
+  [Color(0xFF1A1C18), Color(0xFF252820)],
 ];
 
 LinearGradient softGradient(int i) => LinearGradient(
@@ -35,8 +35,8 @@ BoxDecoration softBox(int i, {double radius = 18, bool border = true}) => BoxDec
     );
 
 const List<MapEntry<String, Color>> accentPalette = [
-  MapEntry('Black', Color(0xFF16181D)),
-  MapEntry('Navy', Color(0xFF1E3A8A)),
+  MapEntry('Sage', Color(0xFFAAB49A)),
+  MapEntry('Olive', Color(0xFF858F78)),
   MapEntry('Emerald', Color(0xFF047857)),
   MapEntry('Plum', Color(0xFF9D174D)),
   MapEntry('Violet', Color(0xFF6D28D9)),
