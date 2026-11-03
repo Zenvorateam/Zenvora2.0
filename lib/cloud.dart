@@ -60,7 +60,7 @@ class Cloud {
     try {
       final r = await http
           .post(_u('/auth/v1/signup'), headers: _headers(), body: jsonEncode({'email': email, 'password': password, 'data': {'name': name}}))
-          .timeout(const Duration(seconds: 15));
+          .timeout(const Duration(seconds: 6));
       if (r.statusCode >= 300) return CloudResult.fail(_err(r));
       return CloudResult.ok(_session(jsonDecode(r.body) as Map<String, dynamic>));
     } catch (_) {
@@ -73,7 +73,7 @@ class Cloud {
     try {
       final r = await http
           .post(_u('/auth/v1/token', {'grant_type': 'password'}), headers: _headers(), body: jsonEncode({'email': email, 'password': password}))
-          .timeout(const Duration(seconds: 15));
+          .timeout(const Duration(seconds: 6));
       if (r.statusCode >= 300) return CloudResult.fail(_err(r));
       return CloudResult.ok(_session(jsonDecode(r.body) as Map<String, dynamic>));
     } catch (_) {
@@ -102,7 +102,7 @@ class Cloud {
     try {
       final r = await http
           .post(_u('/auth/v1/token', {'grant_type': 'refresh_token'}), headers: _headers(), body: jsonEncode({'refresh_token': refreshToken}))
-          .timeout(const Duration(seconds: 15));
+          .timeout(const Duration(seconds: 6));
       if (r.statusCode >= 300) return null;
       return _session(jsonDecode(r.body) as Map<String, dynamic>);
     } catch (_) {
@@ -121,7 +121,7 @@ class Cloud {
   static Future<List<Map<String, dynamic>>?> select(String table, {Map<String, String>? query}) async {
     if (!AppConfig.supabaseReady) return null;
     try {
-      final r = await http.get(_u('/rest/v1/$table', query), headers: _headers(json: false)).timeout(const Duration(seconds: 15));
+      final r = await http.get(_u('/rest/v1/$table', query), headers: _headers(json: false)).timeout(const Duration(seconds: 6));
       if (r.statusCode >= 300) return null;
       return (jsonDecode(r.body) as List).map((e) => Map<String, dynamic>.from(e as Map)).toList();
     } catch (_) {
@@ -135,7 +135,7 @@ class Cloud {
     try {
       final r = await http
           .post(_u('/rest/v1/$table'), headers: _headers(prefer: upsert ? 'resolution=merge-duplicates,return=minimal' : 'return=minimal'), body: jsonEncode(row))
-          .timeout(const Duration(seconds: 15));
+          .timeout(const Duration(seconds: 6));
       return r.statusCode >= 300 ? _err(r) : null;
     } catch (_) {
       return 'Internet check karo';
@@ -147,7 +147,7 @@ class Cloud {
     try {
       final r = await http
           .patch(_u('/rest/v1/$table', filter), headers: _headers(prefer: 'return=minimal'), body: jsonEncode(values))
-          .timeout(const Duration(seconds: 15));
+          .timeout(const Duration(seconds: 6));
       return r.statusCode >= 300 ? _err(r) : null;
     } catch (_) {
       return 'Internet check karo';
